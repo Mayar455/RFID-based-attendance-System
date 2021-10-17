@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\RFID katilim son.obj" 
+TO ".\Objects\RFID katilim sistemi son" 
+PRINT(".\Listings\RFID katilim sistemi son.m51")
