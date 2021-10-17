@@ -1,0 +1,279 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    07/08/2021  16:30:47  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\RFID katilim son.obj TO .\Objects\RFID katilim sistemi son 
+>> PRINT (.\Listings\RFID katilim sistemi son.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\RFID katilim son.obj (RFID_KATILIM_SON)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?STRCMP)
+
+
+LINK MAP OF MODULE:  .\Objects\RFID katilim sistemi son (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000BH     UNIT         _DATA_GROUP_
+            IDATA   0013H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     01B4H     UNIT         ?C?LIB_CODE
+            CODE    09B4H     00E0H     UNIT         ?PR?MAIN?RFID_KATILIM_SON
+            CODE    0A94H     0073H     UNIT         ?CO?RFID_KATILIM_SON
+            CODE    0B07H     0035H     UNIT         ?PR?_DELAY?RFID_KATILIM_SON
+            CODE    0B3CH     002EH     UNIT         ?PR?_LCD_STRING?RFID_KATILIM_SON
+            CODE    0B6AH     0010H     UNIT         ?PR?INIT?RFID_KATILIM_SON
+            CODE    0B7AH     000EH     UNIT         ?PR?_LCD_CMD?RFID_KATILIM_SON
+            CODE    0B88H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0B94H     000AH     UNIT         ?PR?_LCD_DATA?RFID_KATILIM_SON
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\RFID katilim sistemi son (?C_STARTUP)
+
+
+SEGMENT                                    DATA_GROUP 
+  +--> CALLED SEGMENT                    START    LENGTH
+--------------------------------------------------------
+?C_C51STARTUP                            -----    -----
+  +--> ?PR?MAIN?RFID_KATILIM_SON
+
+?PR?MAIN?RFID_KATILIM_SON                0008H    0008H
+  +--> ?PR?_LCD_CMD?RFID_KATILIM_SON
+  +--> ?PR?INIT?RFID_KATILIM_SON
+  +--> ?CO?RFID_KATILIM_SON
+  +--> ?PR?_LCD_STRING?RFID_KATILIM_SON
+  +--> ?PR?_DELAY?RFID_KATILIM_SON
+
+?PR?_LCD_CMD?RFID_KATILIM_SON            -----    -----
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/08/2021  16:30:47  PAGE 2
+
+
+  +--> ?PR?_DELAY?RFID_KATILIM_SON
+
+?PR?_LCD_STRING?RFID_KATILIM_SON         0010H    0003H
+  +--> ?PR?_LCD_DATA?RFID_KATILIM_SON
+  +--> ?PR?_DELAY?RFID_KATILIM_SON
+
+?PR?_LCD_DATA?RFID_KATILIM_SON           -----    -----
+  +--> ?PR?_DELAY?RFID_KATILIM_SON
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\RFID katilim sistemi son (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0B88H         SEGMENT       ?C_C51STARTUP
+  I:0013H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0B8BH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0B88H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0B88H         LINE#         133
+  C:0B8AH         LINE#         134
+  C:0B8BH         LINE#         135
+  C:0B8CH         LINE#         136
+  C:0B8EH         LINE#         185
+  C:0B91H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        RFID_KATILIM_SON
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  B:00A8H.7       PUBLIC        EA
+  C:0B0DH         PUBLIC        _delay
+  B:00A8H.4       PUBLIC        ES
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/08/2021  16:30:47  PAGE 3
+
+
+  B:0098H.0       PUBLIC        RI
+  C:09B4H         PUBLIC        main
+  C:0B3CH         PUBLIC        _lcd_string
+  C:0B94H         PUBLIC        _lcd_data
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:0B6AH         PUBLIC        init
+  C:0B7EH         PUBLIC        _lcd_cmd
+  D:008DH         PUBLIC        TH1
+  B:0088H.6       PUBLIC        TR1
+  B:00A0H.1       PUBLIC        e
+  B:00A0H.0       PUBLIC        rs
+  -------         PROC          L?0035
+  -------         ENDPROC       L?0035
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        a
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0B0DH         LINE#         10
+  C:0B0DH         LINE#         11
+  C:0B0DH         LINE#         13
+  C:0B1DH         LINE#         14
+  C:0B3BH         LINE#         15
+  -------         ENDPROC       _DELAY
+  C:0B7AH         SYMBOL        L?0034
+  -------         PROC          L?0033
+  -------         ENDPROC       L?0033
+  C:0B7AH         SYMBOL        L?0034
+  -------         PROC          _LCD_CMD
+  D:0006H         SYMBOL        a
+  C:0B7EH         LINE#         17
+  C:0B7EH         LINE#         18
+  C:0B7EH         LINE#         19
+  C:0B80H         LINE#         20
+  C:0B82H         LINE#         21
+  C:0B82H         LINE#         22
+  C:0B85H         LINE#         23
+  C:0B87H         LINE#         24
+  -------         ENDPROC       _LCD_CMD
+  -------         PROC          _LCD_DATA
+  D:0006H         SYMBOL        a
+  C:0B94H         LINE#         26
+  C:0B94H         LINE#         27
+  C:0B94H         LINE#         28
+  C:0B96H         LINE#         29
+  C:0B98H         LINE#         30
+  C:0B98H         LINE#         31
+  C:0B9BH         LINE#         32
+  C:0B9DH         LINE#         33
+  -------         ENDPROC       _LCD_DATA
+  -------         PROC          _LCD_STRING
+  D:0010H         SYMBOL        str
+  C:0B3CH         LINE#         35
+  C:0B42H         LINE#         36
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/08/2021  16:30:47  PAGE 4
+
+
+  C:0B42H         LINE#         37
+  C:0B4EH         LINE#         38
+  C:0B4EH         LINE#         39
+  C:0B55H         LINE#         40
+  C:0B5CH         LINE#         41
+  C:0B67H         LINE#         42
+  C:0B69H         LINE#         43
+  -------         ENDPROC       _LCD_STRING
+  -------         PROC          MAIN
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0008H         SYMBOL        a2
+  -------         ENDDO         
+  C:09B4H         LINE#         45
+  C:09B4H         LINE#         46
+  C:09B4H         LINE#         50
+  C:09BBH         LINE#         51
+  C:09C2H         LINE#         52
+  C:09C5H         LINE#         53
+  C:09CCH         LINE#         54
+  C:09CFH         LINE#         55
+  C:09D8H         LINE#         56
+  C:09DFH         LINE#         57
+  C:09E8H         LINE#         58
+  C:09EBH         LINE#         59
+  C:09EBH         LINE#         62
+  C:09EBH         LINE#         63
+  C:09F9H         LINE#         64
+  C:09F9H         LINE#         65
+  C:09FCH         LINE#         67
+  C:0A02H         LINE#         68
+  C:0A04H         LINE#         70
+  C:0A04H         LINE#         72
+  C:0A1AH         LINE#         73
+  C:0A1AH         LINE#         74
+  C:0A20H         LINE#         75
+  C:0A20H         LINE#         76
+  C:0A20H         LINE#         77
+  C:0A20H         LINE#         78
+  C:0A20H         LINE#         79
+  C:0A20H         LINE#         80
+  C:0A22H         LINE#         82
+  C:0A38H         LINE#         83
+  C:0A38H         LINE#         84
+  C:0A3EH         LINE#         85
+  C:0A3EH         LINE#         86
+  C:0A3EH         LINE#         87
+  C:0A3EH         LINE#         88
+  C:0A3EH         LINE#         89
+  C:0A3EH         LINE#         90
+  C:0A40H         LINE#         92
+  C:0A56H         LINE#         93
+  C:0A56H         LINE#         94
+  C:0A5FH         LINE#         95
+  C:0A62H         LINE#         96
+  C:0A6BH         LINE#         97
+  C:0A72H         LINE#         98
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/08/2021  16:30:47  PAGE 5
+
+
+  C:0A7BH         LINE#         99
+  C:0A82H         LINE#         100
+  C:0A85H         LINE#         102
+  C:0A85H         LINE#         103
+  C:0A8EH         LINE#         104
+  C:0A91H         LINE#         105
+  C:0A91H         LINE#         107
+  -------         ENDPROC       MAIN
+  -------         PROC          INIT
+  C:0B6AH         LINE#         110
+  C:0B6AH         LINE#         111
+  C:0B6AH         LINE#         112
+  C:0B6CH         LINE#         113
+  C:0B6EH         LINE#         114
+  C:0B71H         LINE#         115
+  C:0B74H         LINE#         116
+  C:0B77H         LINE#         117
+  C:0B79H         LINE#         119
+  -------         ENDPROC       INIT
+  -------         ENDMOD        RFID_KATILIM_SON
+
+  -------         MODULE        ?C?CLDPTR
+  C:0800H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?STRCMP
+  C:0997H         PUBLIC        ?C?STRCMP
+  -------         ENDMOD        ?C?STRCMP
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 01EDH BYTE (24%) *
+******************************************************************************
+
+Program Size: data=20.0 xdata=0 code=929
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

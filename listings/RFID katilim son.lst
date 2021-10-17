@@ -1,0 +1,154 @@
+C51 COMPILER V9.60.0.0   RFID_KATILIM_SON                                                  07/08/2021 16:30:47 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE RFID_KATILIM_SON
+OBJECT MODULE PLACED IN .\Objects\RFID katilim son.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE RFID katilim son.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\RFID katilim son.lst) TABS(2) OBJECT(.\Objects\RFID katilim son.obj)
+
+line level    source
+
+   1          #include <reg51.h>     // microcontrollerin fileleri hep burada saklanir
+   2          #include <string.h>     // string fonksiyonu LCD ye giris icin kullanilir.
+   3          
+   4          
+   5          sbit rs = P2^0; // LCD nin rs komutu verileri / komutlari gonderme islemi yapar
+   6          sbit e = P2^1;  // high levelden low levele sinyal gonderen e komutu , yine LCD ye ait baska bir komut
+   7          
+   8          void init (); // baslama fonksiyonu
+   9          
+  10          void delay(int a)
+  11          {
+  12   1        int i,j;
+  13   1        for(i=0;i<a;i++)
+  14   1        for(j=0;j<a;j++);
+  15   1      }
+  16          
+  17          void lcd_cmd(int a)
+  18          {
+  19   1        P1=a;     //   parametre olarak a degerini alan P1 portu, cikti islemini goruyor. lcd den ciktilari aliyor
+  20   1        rs=0;     //   LCD ye komut gondermek icin rs degeri =0 olmali
+  21   1        e=1;      //   enable high olacak
+  22   1        delay(10);  // enable high ve low arasinda bir delay gerceklesecek.
+  23   1        e=0;         //      enable low olck
+  24   1      }
+  25          
+  26          void lcd_data(int a)
+  27          {
+  28   1        P1=a;
+  29   1        rs=1;   // LCD ye veri / komutlar gondermek istedigimizde RS =0 olmali burada 
+  30   1        e=1;
+  31   1        delay(10);
+  32   1        e=0;
+  33   1      }
+  34          
+  35          void lcd_string( char *str)
+  36          {
+  37   1          while(*str)
+  38   1          {
+  39   2            lcd_data(*str);
+  40   2            delay(100);
+  41   2            str++;
+  42   2          }
+  43   1      }
+  44          
+  45          void main()
+  46          {
+  47   1        int i;
+  48   1        unsigned char a2[8]; // 8 boyut buyuklugune sahip bir dizi tanimliyoruz
+  49   1        // baslatmak amaciyle LCD ye gonderilen komutlar
+  50   1        lcd_cmd(0x38);     //  2 satir ve 5×7 matris boyunta verileri LCD ye aktariyor.
+  51   1        lcd_cmd(0x0E);    // 
+  52   1        lcd_cmd(0x01);    //  ekran temizleme icin kullanilir.
+  53   1        lcd_cmd(0x80);    //  ilk satir gosteren komutumuzdur.
+  54   1        init();
+C51 COMPILER V9.60.0.0   RFID_KATILIM_SON                                                  07/08/2021 16:30:47 PAGE 2   
+
+  55   1          lcd_string("HOS GELDINIZ");
+  56   1          lcd_cmd(0xC0); // ikinci satirdaki ilk cumleyi gosteren komut
+  57   1          lcd_string("ID NO GIRINIZ");
+  58   1          lcd_cmd(0x01); //
+  59   1        while(1) // while 1 de iken, kosulun her daim dogru oldugu anlami verir.
+  60   1                //  bu da govdesinde kodlarin kosulu sagalandigi 
+  61   1                //  takdirde calistirmasini anlami veriyor
+  62   1        {
+  63   2          for( i=0;i<4;i++);    //4 rakamli ( bit)  bir ID girilmesi icin for dongusu uzerinden string sayisini ko
+             -ntrol edilir.
+  64   2          {
+  65   3              while (RI ==0); // interupt komutunu enable ediyoruz burada. EA=1 sayesinde bu islem aktif hale geliyo
+             -r
+  66   3                                // bufferden bir komut saklanmasi gerektiginde Reciever interupt ( RI) = 1 olacak
+  67   3                a2[i]=SBUF; //stringlerin a2 dizisinde sakladigini kontrol ediyor.
+  68   3                RI=0;   //saklam islemi gerceklestiken sonra RI = 1 yerine tekrar 0 esit oluyor.
+  69   3              
+  70   3          }
+  71   2          
+  72   2          if (strcmp (a2,"0513")==0)  //a2 dizisinde atanan bu deger , strcmp methodu sayesinde karsilastirilir. d
+             -ogru ise govdesindeki komutu donduruyor. 
+  73   2          {
+  74   3            lcd_string ("Atiq Mayar");
+  75   3            lcd_cmd(0x01);
+  76   3            lcd_string ("iyi dersler");
+  77   3            lcd_cmd(0xc0);
+  78   3            lcd_string ("Kayitlandiniz");
+  79   3            delay(200);
+  80   3          }
+  81   2          
+  82   2          else if (strcmp (a2,"0517")==0)
+  83   2          {
+  84   3            lcd_string ("Morteza Yosefy");
+  85   3            lcd_cmd(0x01);
+  86   3            lcd_string ("iyi dersler");
+  87   3            lcd_cmd(0xc0);
+  88   3            lcd_string ("Kayitlandiniz");
+  89   3            delay(200);
+  90   3          }
+  91   2          
+  92   2          else if (strcmp (a2,"0516")==0)
+  93   2          {
+  94   3            lcd_string ("Reza");
+  95   3            lcd_cmd(0x01);
+  96   3            lcd_string ("iyi dersler");
+  97   3            lcd_cmd(0xc0);
+  98   3            lcd_string ("Kayitlandiniz");
+  99   3            delay(200);
+ 100   3          }
+ 101   2          
+ 102   2          else {
+ 103   3            lcd_string("YANLIS GIRDINIZ");
+ 104   3            lcd_cmd(0x01);
+ 105   3          }
+ 106   2          
+ 107   2        }
+ 108   1      }
+ 109          
+ 110          void init()
+ 111          {
+ 112   1        EA=1; // interuptin global olarak enable olmasini gosteren komut
+ 113   1        ES=1; // interuptin serial olarak enable olmasini gosteren komut
+C51 COMPILER V9.60.0.0   RFID_KATILIM_SON                                                  07/08/2021 16:30:47 PAGE 3   
+
+ 114   1        TMOD =0X20; // timer Modlari secmemizde yardimci olan TMOD komutu. burada 8 bit auto reload modu kullandi
+             -k.
+ 115   1        SCON = 0X50;  // 8bit data , 1 stop bit , REN enabled. serail port kullanarak veriler / sinyaller gonderi
+             -m ve alimi yapar
+ 116   1        TH1 = -3;  //  baud rate  9600 ulasmasini saglar.
+ 117   1        TR1 = 1; //timer 1 olarak alip baslatiyor.
+ 118   1        
+ 119   1      }
+ 120            
+ 121              
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    363    ----
+   CONSTANT SIZE    =    115    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
